@@ -10,7 +10,9 @@ module.exports = function (app) {
         })
     });
     app.post("/api/workouts", (_req, res) => {
+        
         db.create({}).then(data => {
+            console.log(data)
             res.json(data)
         })
         .catch(err =>{
@@ -19,6 +21,7 @@ module.exports = function (app) {
         })
     });
     app.put("/api/workouts/:id", ({ body, params }, res) => {
+        console.log(body)
         db.findByIdAndUpdate(
             params.id,
             { $push: { exercises: body } },
